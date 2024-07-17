@@ -6,7 +6,7 @@ func enter():
 func process(_delta):
 	if Input.is_action_pressed('ui_accept'):
 		state_machine.change_to(player.states._idle)
-	set_action_direction()
+	move_4_directions()
 
 func set_action_direction():
 	if Input.is_action_pressed('ui_right'):
@@ -26,3 +26,8 @@ func set_action_direction():
 		play_animation(player.animations.walk_down)
 	else:
 		state_machine.change_to('PlayerStateIdle')
+
+func move_4_directions():
+	set_action_direction()
+	player.urm_2d.direction_2d = player.current_direction._vector_2d
+	player.urm_2d.move()
